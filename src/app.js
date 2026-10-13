@@ -49,14 +49,14 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "Nexota API Running",
+    message: "Velzora API Running",
   });
 });
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "Nexota API is healthy",
+    message: "Velzora API is healthy",
     environment: process.env.NODE_ENV || "development",
   });
 });

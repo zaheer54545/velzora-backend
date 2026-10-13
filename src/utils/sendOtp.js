@@ -1,10 +1,10 @@
 const isEmail = (value) => /^\S+@\S+\.\S+$/.test(value);
 
 export const sendOtp = async ({ identifier, otp }) => {
-  const message = `Your Nexota OTP is ${otp}. It will expire in 10 minutes.`;
+  const message = `Your Velzora OTP is ${otp}. It will expire in 10 minutes.`;
 
   if (!isEmail(identifier)) {
-    console.log(`[Nexota OTP] ${identifier}: ${otp}`);
+    console.log(`[Velzora OTP] ${identifier}: ${otp}`);
     return {
       sent: false,
       channel: "console",
@@ -17,7 +17,7 @@ export const sendOtp = async ({ identifier, otp }) => {
     !process.env.SMTP_USER ||
     !process.env.SMTP_PASS
   ) {
-    console.log(`[Nexota OTP] ${identifier}: ${otp}`);
+    console.log(`[Velzora OTP] ${identifier}: ${otp}`);
     return {
       sent: false,
       channel: "console",
@@ -40,7 +40,7 @@ export const sendOtp = async ({ identifier, otp }) => {
     await transporter.sendMail({
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: identifier,
-      subject: "Your Nexota OTP",
+      subject: "Your Velzora OTP",
       text: message,
       html: `<p>${message}</p>`,
     });
@@ -51,7 +51,7 @@ export const sendOtp = async ({ identifier, otp }) => {
       message: "OTP sent successfully.",
     };
   } catch (error) {
-    console.log(`[Nexota OTP] ${identifier}: ${otp}`);
+    console.log(`[Velzora OTP] ${identifier}: ${otp}`);
     console.error("OTP email error:", error.message);
 
     return {

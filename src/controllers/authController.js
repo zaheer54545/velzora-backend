@@ -37,7 +37,7 @@ const isEmailIdentifier = (identifier) => /^\S+@\S+\.\S+$/.test(identifier);
 
 const phoneToEmail = (phone) => {
   const digits = String(phone).replace(/\D/g, "");
-  return `${digits || Date.now()}@phone.nexota.local`;
+  return `${digits || Date.now()}@phone.velzora.local`;
 };
 
 const findUserByIdentifier = async (identifier) => {
@@ -74,7 +74,7 @@ const createOtpUser = async ({ identifier }) => {
   const phone = isEmail ? "" : identifier;
   const name = isEmail
     ? identifier.split("@")[0].replace(/[._-]+/g, " ")
-    : "Nexota Customer";
+    : "Velzora Customer";
   const randomPassword = await bcrypt.hash(
     `${identifier}-${Date.now()}-${Math.random()}`,
     10,

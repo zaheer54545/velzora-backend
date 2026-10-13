@@ -1,9 +1,16 @@
 import mongoose from "mongoose";
+import loadEnv from "./src/config/loadEnv.js";
 import Brand from "./src/models/Brand.js";
 import Product from "./src/models/Product.js";
 
-const MONGODB_URI =
-  "mongodb+srv://nexota:bareera123@cluster0.lqugjff.mongodb.net/?appName=Cluster0";
+loadEnv();
+
+const MONGODB_URI = process.env.MONGO_URI || process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+  console.error("❌ MONGO_URI .env file mein nahi mila");
+  process.exit(1);
+}
 
 await mongoose.connect(MONGODB_URI);
 console.log("✅ Connected to MongoDB");
