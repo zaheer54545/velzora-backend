@@ -1,4 +1,5 @@
 import express from "express";
+import upload from "../middleware/uploadMiddleware.js";
 
 import {
   createProduct,
@@ -21,6 +22,7 @@ const asyncHandler = (controller) => {
   };
 };
 
+// GET products
 router.get("/", asyncHandler(getProducts));
 router.get("/search/:keyword", asyncHandler(searchProducts));
 router.get("/filter/all", asyncHandler(filterProducts));
@@ -29,10 +31,21 @@ router.get("/best-sellers", asyncHandler(getBestSellerProducts));
 router.get("/slug/:slug", asyncHandler(getProductBySlug));
 router.get("/:id", asyncHandler(getProductById));
 
-// Multer removed — images are now uploaded directly from the browser
-// to Cloudinary. Backend receives only JSON with image URLs.
-router.post("/", asyncHandler(createProduct));
-router.put("/:id", asyncHandler(updateProduct));
+// CREATE product: maximum 5 images
+router.post(
+  "/",
+  upload.array("images", 5),
+  asyncHandler(createProduct)
+);
+
+// UPDATE product: maximum 5 newly uploaded images
+router.put(
+  "/:id",
+  upload.array("images", 5),
+  asyncHandler(updateProduct)
+);
+
+// DELETE product
 router.delete("/:id", asyncHandler(deleteProduct));
 
 export default router;
