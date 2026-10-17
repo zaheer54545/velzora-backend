@@ -299,12 +299,10 @@ export const getProducts = async (req, res) => {
     });
   } catch (error) {
     console.error("Get products error:", error);
-    return res
-      .status(500)
-      .json({
-        success: false,
-        message: error.message || "Products fetch failed",
-      });
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Products fetch failed",
+    });
   }
 };
 
@@ -324,12 +322,10 @@ export const getProductById = async (req, res) => {
     return res.json({ success: true, data: product, product });
   } catch (error) {
     console.error("Get product by id error:", error);
-    return res
-      .status(500)
-      .json({
-        success: false,
-        message: error.message || "Product fetch failed",
-      });
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Product fetch failed",
+    });
   }
 };
 
@@ -345,12 +341,10 @@ export const getProductBySlug = async (req, res) => {
     return res.json({ success: true, data: product, product });
   } catch (error) {
     console.error("Get product by slug error:", error);
-    return res
-      .status(500)
-      .json({
-        success: false,
-        message: error.message || "Product fetch failed",
-      });
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Product fetch failed",
+    });
   }
 };
 
@@ -389,12 +383,10 @@ export const updateProduct = async (req, res) => {
     });
   } catch (error) {
     console.error("Update product error:", error);
-    return res
-      .status(500)
-      .json({
-        success: false,
-        message: error.message || "Update product failed",
-      });
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Update product failed",
+    });
   }
 };
 
@@ -418,12 +410,10 @@ export const deleteProduct = async (req, res) => {
     });
   } catch (error) {
     console.error("Delete product error:", error);
-    return res
-      .status(500)
-      .json({
-        success: false,
-        message: error.message || "Delete product failed",
-      });
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Delete product failed",
+    });
   }
 };
 
