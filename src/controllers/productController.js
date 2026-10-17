@@ -236,6 +236,20 @@ const uploadFiles = async (files = []) => {
 
 export const createProduct = async (req, res) => {
   try {
+    console.log("CT:", req.headers["content-type"]);
+    console.log("BODY:", req.body);
+    console.log("FILES:", req.files);
+
+    if (!req.body || !req.body.title) {
+      return res.status(400).json({
+        success: false,
+        message: "DEBUG: body empty",
+        contentType: req.headers["content-type"],
+        receivedKeys: Object.keys(req.body || {}),
+        filesCount: req.files?.length || 0,
+      });
+    }
+
     const uploadedImages = req.files?.length
       ? await uploadFiles(req.files)
       : [];
